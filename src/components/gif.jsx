@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Gif extends Component {
   render() {
     // eslint-disable-next-line react/destructuring-assignment
