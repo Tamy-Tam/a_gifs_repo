@@ -5,19 +5,21 @@ import SearchBar from './search_bar';
 import Gif from './gif.jsx';
 import GifList from './gif_list.jsx';
 
+const GIPHY_API_KEY = 'RsvpNyuJ5DJNWvSOO2BYXCAISLNtXxV2';
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       gifs: [],
-      selectedGifId: "xT9IgDEI1iZyb2wqo8"
+      selectedGifId: "hmDKEVDxaWn2U"
       // TODO: Add a new state
     };
-    this.search('disney dancing');
+    this.search = this.search.bind(this);
+    this.selectGif = this.selectGif.bind(this);
+    // this.search('disney dancing');
   }
-
- // TODO: Have a new function passing to the children
 
   search = (query) => {
     // API Call
@@ -32,13 +34,14 @@ class App extends Component {
     });
   }
 
+  // TODO: Have a new function passing to the children
+  selectGif(id) {
+    this.setState({
+      selectedGifId: id
+    });
+  }
 
   render() {
-    const gifs = [
-      { id: 'xT9IgDEI1iZyb2wqo8' },
-      { id: 'vKTkbOYdIPYmQ' },
-      { id: '12fegBdilUKCRy' }
-    ];
     return (
       <div>
         <div className="left-scene">
@@ -48,7 +51,7 @@ class App extends Component {
           </div>
         </div>
         <div className="right-scene">
-          <GifList gifs={this.state.gifs} />
+          <GifList gifs={this.state.gifs} selectGif={this.selectGif} />
         </div>
       </div>
     );
