@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import giphy from 'giphy-api';
+
 import SearchBar from './search_bar';
 import Gif from './gif.jsx';
 import GifList from './gif_list.jsx';
@@ -10,12 +12,22 @@ class App extends Component {
     this.state = {
       gifs: [],
       selectedGifId: "xT9IgDEI1iZyb2wqo8"
-    }
+    };
+    this.search('disney dancing');
   }
 
 
   search = (query) => {
     // TODO: API Call
+    giphy('RsvpNyuJ5DJNWvSOO2BYXCAISLNtXxV2').search({
+      q: query,
+      rating: 'g',
+      limit: 20
+    }, (error, result) => {
+      this.setState({
+        gifs: result.data
+      });
+    });
   }
 
 
@@ -28,7 +40,7 @@ class App extends Component {
     return (
       <div>
         <div className="left-scene">
-          <SearchBar />
+          <SearchBar searchFunction={this.search} />
           <div className="selected-gif">
             <Gif id={this.state.selectedGifId} />
           </div>
