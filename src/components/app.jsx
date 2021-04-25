@@ -12,13 +12,15 @@ class App extends Component {
     this.state = {
       gifs: [],
       selectedGifId: "xT9IgDEI1iZyb2wqo8"
+      // TODO: Add a new state
     };
     this.search('disney dancing');
   }
 
+ // TODO: Have a new function passing to the children
 
   search = (query) => {
-    // TODO: API Call
+    // API Call
     giphy('RsvpNyuJ5DJNWvSOO2BYXCAISLNtXxV2').search({
       q: query,
       rating: 'g',
